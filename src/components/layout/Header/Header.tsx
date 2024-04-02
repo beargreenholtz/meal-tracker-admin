@@ -1,11 +1,7 @@
 import Svg from '../../ui/Svg/Svg';
 import ThemeController from '../../ui/ThemeController/ThemeController';
 
-type Props = {
-	readonly toggleTheme: VoidFunction;
-};
-
-const Header = (props: Props) => {
+const Header = () => {
 	return (
 		<div className="navbar bg-base-100 px-4 md:px-20 absolute z-20">
 			<div className="navbar-start">
@@ -64,7 +60,7 @@ const Header = (props: Props) => {
 			</div>
 			<div className="navbar-end flex gap-3 ">
 				<a className="btn btn-neutral">Button</a>
-				<ThemeController toggleTheme={props.toggleTheme} />
+				<ThemeController />
 			</div>
 		</div>
 	);

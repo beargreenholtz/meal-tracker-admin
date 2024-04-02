@@ -1,23 +1,12 @@
-import { useState } from 'react';
-import Register from './components/containers/Auth/Register/Register';
-import Header from './components/layout/Header/Header';
+import AppRouter from './app.router';
+import { useAppSelector } from './hooks/redux';
 
 function App() {
-	const storedTheme = localStorage.getItem('theme');
-
-	const [isThemeToggled, setIsThemeToggled] = useState(
-		storedTheme ? JSON.parse(storedTheme) === 'dark' : false,
-	);
-
-	const toggleTheme = () => {
-		localStorage.setItem('theme', isThemeToggled ? JSON.stringify('light') : JSON.stringify('dark'));
-		setIsThemeToggled((prev) => !prev);
-	};
+	const themeType = useAppSelector((state) => state.user.themeType);
 
 	return (
-		<div data-theme={isThemeToggled ? 'dark' : 'light'}>
-			<Header toggleTheme={toggleTheme} />
-			<Register />
+		<div data-theme={themeType}>
+			<AppRouter />
 		</div>
 	);
 }

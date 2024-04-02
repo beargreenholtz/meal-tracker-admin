@@ -1,4 +1,4 @@
 export type RegisterInputs = {
-	readonly username: string;
+	readonly email: string;
 	readonly password: string;
 };

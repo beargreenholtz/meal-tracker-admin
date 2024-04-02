@@ -1,20 +1,26 @@
 import Svg from '../Svg/Svg';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/app';
+import * as authActions from '@/store/actions/auth';
+import { useAppDispatch } from '@/hooks/redux';
 
-type Props = {
-	readonly toggleTheme: VoidFunction;
-};
+const ThemeController = () => {
+	const dispatch = useAppDispatch();
 
-const ThemeController = (props: Props) => {
-	const storedTheme = localStorage.getItem('theme');
+	const themeType = useSelector((state: RootState) => state.user.themeType);
+
+	const toggleTheme = () => {
+		dispatch(authActions.toggleTheme(themeType));
+	};
 
 	return (
 		<label className="cursor-pointer grid place-items-center">
 			<input
 				type="checkbox"
-				value="synthwave"
+				value="dark"
 				className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
-				checked={storedTheme ? JSON.parse(storedTheme) === 'dark' : false}
-				onChange={props.toggleTheme}
+				checked={themeType === 'dark' ? true : false}
+				onChange={toggleTheme}
 			/>
 
 			<Svg
